@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+// objects of answers are wrapped in an array for mapping to display later
 export default function App() {
 	const qArray = [
 		{	 
@@ -40,17 +41,19 @@ export default function App() {
 		},
 	];
 
+// setup useState for several items
 	const [qNow, setqNow] = useState(0);
 	const [score, setScore] = useState(0);
 	const [btnClick, setBtnClick] = useState(true);
 	const [ttlClick, setTtlClick] = useState(0);
-	const [counter, setCounter] = React.useState(12);
+	const [counter, setCounter] = useState(12);
 	
 	React.useEffect(() => {
 	  const timer = counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
 	  return () => clearInterval(timer); 
 	}, [counter]);
 
+// function to handle user's choice of answer
 	const handleUserClick = (userAns) => { 
 		if (btnClick) {			
 			if (userAns) {
@@ -66,6 +69,7 @@ export default function App() {
 		}
 	};
 
+// Display time is up message if countdown timer stops
 	if (counter === 0 && ttlClick < '4' ) {
         return ( 
             <div className='container'> 
